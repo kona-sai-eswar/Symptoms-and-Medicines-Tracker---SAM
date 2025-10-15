@@ -7,12 +7,15 @@ import { useState, useRef, useEffect } from "react";
 import { FaTrash, FaCheck, FaTimes, FaPen, } from "react-icons/fa";
 import { addToSaved, removeFromSaved } from "@/lib/Symptoms/savedAction";
 import ModalDelete from "./ModalDelete";
+import { MdSettingsBackupRestore } from "react-icons/md";
+import ModalRestore from "./ModalRestore";
 
 export default function SymptomsCard({ symptom, fromArchived=false, fromSaved=false}) {
   let [updateSymName, setUpdateSymName] = useState(false);
   let [symName, setSymName] = useState(symptom.name);
   const [toggleSaved, setToggleSaved]=useState(symptom.isSaved)
   const [deleteSym, setDeleteSym]=useState(false)
+  const [restoreSym, setRestoreSym]=useState(false)
   const router = useRouter();
 
   const updateRef = useRef(null);
@@ -59,6 +62,7 @@ export default function SymptomsCard({ symptom, fromArchived=false, fromSaved=fa
 
   return (<>             
     {deleteSym && <ModalDelete deleteSym={deleteSym} setDeleteSym={setDeleteSym} symptom={symptom} fromArchived={fromArchived}/>}
+    {fromArchived && restoreSym && <ModalRestore setRestoreSym={setRestoreSym} symptom={symptom}/>}
     <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-4 flex flex-col justify-between transition-transform transform hover:scale-105">
 
       <div className="flex justify-between items-center">
@@ -68,7 +72,12 @@ export default function SymptomsCard({ symptom, fromArchived=false, fromSaved=fa
       >
         <FaTrash size={15} />
       </button>
-      {!fromArchived && <button
+      {fromArchived ? <button
+        onClick={()=>setRestoreSym(true)}
+        className="p-2 text-gray-500 transition cursor-pointer "
+      >
+        <MdSettingsBackupRestore size={20}/>
+      </button> : <button
         onClick={handleSaved}
         className="p-2 text-gray-500 transition cursor-pointer "
       >

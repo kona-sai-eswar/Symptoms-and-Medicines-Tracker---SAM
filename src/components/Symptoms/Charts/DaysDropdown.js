@@ -15,7 +15,12 @@ export default function DaysDropdown({ days, selectedDays, setSelectedDays }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleDay = (day) => {
+  const toggleDay = (e,day) => {
+    if(day==="all"){
+      const allDays=days.map(day=>day.date)
+      setSelectedDays(e.target.checked?allDays:[])
+      return;
+    }
     setSelectedDays((prev) =>
       prev.includes(day)
         ? prev.filter((d) => d !== day)
@@ -39,8 +44,16 @@ export default function DaysDropdown({ days, selectedDays, setSelectedDays }) {
         <div className="flex flex-col p-2">
           {days.length === 0 ? (
             <p className="text-sm text-gray-400 text-center py-2">No days</p>
-          ) : (
-            days.map((day) => (
+          ) : (<>
+                <label
+                className="flex items-center gap-2 px-2 py-1 cursor-pointer hover:bg-gray-50 rounded"
+              >
+                <input
+                  type="checkbox"
+                  onChange={(e) => toggleDay(e,"all")}
+                />
+                <span>Select All</span></label>
+            {days.map((day) => (
               <label
                 key={day.date}
                 className="flex items-center gap-2 px-2 py-1 cursor-pointer hover:bg-gray-50 rounded"
@@ -48,11 +61,12 @@ export default function DaysDropdown({ days, selectedDays, setSelectedDays }) {
                 <input
                   type="checkbox"
                   checked={selectedDays.includes(day.date)}
-                  onChange={() => toggleDay(day.date)}
+                  onChange={(e) => toggleDay(e,day.date)}
                 />
                 <span>{day.date}</span>
               </label>
-            ))
+            ))}
+            </>
           )}
         </div>
       </div>

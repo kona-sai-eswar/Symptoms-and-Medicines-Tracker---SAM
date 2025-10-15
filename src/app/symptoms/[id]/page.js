@@ -111,9 +111,11 @@ export default function SymptomID({ params }) {
   return (
     <>
       <button
-        onClick={() =>{if(fromArchived) router.push("/symptoms/archived")
-                      else if(fromSaved) router.push("/symptoms/saved") 
-                      else router.push("/symptoms")}}
+        onClick={() => {
+          if (fromArchived) router.push("/symptoms/archived");
+          else if (fromSaved) router.push("/symptoms/saved");
+          else router.push("/symptoms");
+        }}
         className="flex items-center mt-3 text-gray-700 hover:text-blue-600 cursor-pointer"
       >
         <CircleArrowLeft className="w-6 h-6" />
@@ -124,25 +126,48 @@ export default function SymptomID({ params }) {
         <Trash2 size={15}/>
       </button> */}
         <div className="flex gap-2">
-          <div className="text-center text-3xl text-blue-500">{symptom.name}</div>
-          {symptom.severity.length>0 && symptom.severity.some(day=>day.records.length>0) && <button className="cursor-pointer" onClick={()=>router.push(`/symptoms/${id}/trends`)}><ChartLine size={20}/></button>}        </div>
-        {fromArchived? <p>Archived</p> :<div className="flex gap-2 items-center">
-          <h2 className="text-lg font-medium text-gray-700">Add a New Severity</h2>
-          <button
-            onClick={() => {
-              setUpdate((p) => !p);
-              setNewErr({ sev: "", des: "" });
-            }}
-            className="cursor-pointer hover:scale-110 transition-transform duration-200"
-          >
-            {!update ? <PlusCircle size={18} className="text-green-500" /> :
-            <XCircle size={18} className="text-red-500"/>}
-          </button>
-        </div>}
+          <div className="text-center text-3xl text-blue-500">
+            {symptom.name}
+          </div>
+          {symptom.severity.length > 0 &&
+            symptom.severity.some((day) => day.records.length > 0) && (
+              <button
+                className="cursor-pointer"
+                onClick={() => {
+                  if(fromArchived) {router.push(`/symptoms/${id}/trends?isArchived=true`)}
+                  else if(fromSaved) {router.push(`/symptoms/${id}/trends?isSaved=true`)}
+                  else {router.push(`/symptoms/${id}/trends`)}
+                }}
+              >
+                <ChartLine size={20} />
+              </button>
+            )}
+        </div>
+        {fromArchived ? (
+          <p>Archived</p>
+        ) : (
+          <div className="flex gap-2 items-center">
+            <h2 className="text-lg font-medium text-gray-700">
+              Add a New Severity
+            </h2>
+            <button
+              onClick={() => {
+                setUpdate((p) => !p);
+                setNewErr({ sev: "", des: "" });
+              }}
+              className="cursor-pointer hover:scale-110 transition-transform duration-200"
+            >
+              {!update ? (
+                <PlusCircle size={18} className="text-green-500" />
+              ) : (
+                <XCircle size={18} className="text-red-500" />
+              )}
+            </button>
+          </div>
+        )}
       </div>
 
       {update && (
-    
         <div className="flex justify-center items-center mt-2">
           <form
             onSubmit={handleUpdate}
@@ -193,7 +218,7 @@ export default function SymptomID({ params }) {
                 disabled={newErr.sev !== "" || newErr.des !== "" || submitting}
                 className="border rounded p-1 text-white bg-blue-500 cursor-pointer hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {submitting?"Submitting...":"Submit"}
+                {submitting ? "Submitting..." : "Submit"}
               </button>
               <button
                 type="button"
@@ -212,23 +237,30 @@ export default function SymptomID({ params }) {
         </div>
       )}
 
-      {(symptom?.severity?.length>0) ? <div className="flex flex-col w-full h-[300px] my-2">
-        {symptom?.severity?.toReversed().map((date, index) => {
-          return (
-            <div key={date?._id}>{date.records.length>0 && <div className="m-2 border-gray-500 rounded shadow-xl inset-shadow-xs p-6">
-              <SymptomDetailCard
-                date={date}
-                id={symptom._id}
-                symptom={symptom}
-                setRefetchData={setRefetchData}
-                setSymptom={setSymptom}
-                fromArchived={fromArchived}
-              />
-            </div>}
-            </div>
-          );
-        })}
-      </div> : <p className="text-red-500 text-center mt-6">No Records</p>}
+      {symptom?.severity?.length > 0 ? (
+        <div className="flex flex-col w-full h-[300px] my-2">
+          {symptom?.severity?.toReversed().map((date, index) => {
+            return (
+              <div key={date?._id}>
+                {date.records.length > 0 && (
+                  <div className="m-2 border-gray-500 rounded shadow-xl inset-shadow-xs p-6">
+                    <SymptomDetailCard
+                      date={date}
+                      id={symptom._id}
+                      symptom={symptom}
+                      setRefetchData={setRefetchData}
+                      setSymptom={setSymptom}
+                      fromArchived={fromArchived}
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <p className="text-red-500 text-center mt-6">No Records</p>
+      )}
     </>
   );
 }
