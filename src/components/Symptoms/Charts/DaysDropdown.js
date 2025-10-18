@@ -50,6 +50,7 @@ export default function DaysDropdown({ days, selectedDays, setSelectedDays }) {
               >
                 <input
                   type="checkbox"
+                  checked={selectedDays.length===days.length}
                   onChange={(e) => toggleDay(e,"all")}
                 />
                 <span>Select All</span></label>

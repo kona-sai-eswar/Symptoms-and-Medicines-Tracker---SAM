@@ -1,5 +1,6 @@
 import api from "@/axios/api"
-import SymptomsCard from "@/components/Symptoms/SymptomsCard"
+import SymptomsClient from "@/components/Symptoms/SymptomsClient"
+
 export const dynamic = "force-dynamic";
 
 export default async function Saved(){
@@ -10,16 +11,12 @@ export default async function Saved(){
 
     return(
         <div className="m-4 flex flex-col gap-2">
-            {saved.length===0 ? <p className="text-center">No  Saved Symptoms</p> :<><h1 className="text-center text-4xl">Your Symptoms</h1>
+            
+            <h1 className="text-center text-4xl mb-2">Saved Symptoms</h1>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {   
-                    
-                    saved.toReversed().map(sym=>{
-                        return <SymptomsCard symptom={sym} key={sym._id} fromSaved={true}/>
-                    })
-                }
-            </div></>}
+            {
+                saved.length===0 ? <p className="text-center self-center text-red-500">No Active symptoms</p> : <SymptomsClient symptoms={saved} fromSaved={true}/>
+            }
         </div>
     )
 }

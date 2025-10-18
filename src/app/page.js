@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+const dynamic = "force-cache"
 
 export default function Home() {
   return (
@@ -7,21 +8,21 @@ export default function Home() {
       {/* Header Section */}
       <div className="max-w-4xl text-center">
         <h1 className="font-extrabold text-blue-500 text-4xl mb-4">
-          Symptoms &amp; Medicines Tracker - SAM
+          MediDiary
         </h1>
 
         <h2 className="text-2xl font-semibold mt-6 mb-2">
           Welcome to Your Personal Health Tracker
         </h2>
         <p className="text-lg leading-relaxed">
-          Keeping track of your symptoms and medications has never been easier.
+          Keeping track of your symptoms has never been easier.
           Whether you’re managing chronic conditions or just monitoring your
           well-being, our app helps you record every detail in one convenient
           place. With a few clicks, you can log how you’re feeling today or add
-          new symptoms and medications to your personalized health record.
+          new symptoms to your personalized health record.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-6 mb-2">
+        {/* <h2 className="text-2xl font-semibold mt-6 mb-2">
           Stay On Top of Your Health
         </h2>
         <p className="text-lg leading-relaxed">
@@ -30,19 +31,19 @@ export default function Home() {
           time, so you can spot patterns, track improvements, or notice changes
           that may need attention. Your data is organized by day, making it easy
           to review and reflect on your health journey.
-        </p>
+        </p> */}
 
         <h2 className="text-2xl font-semibold mt-6 mb-2">
           Quick, Simple, and Reliable
         </h2>
         <p className="text-lg leading-relaxed">
-          Logging symptoms or medications takes only a few seconds. With
+          Logging symptoms takes only a few seconds. With
           intuitive buttons for each action—whether it’s adding a new entry,
           logging what’s happening now, or reviewing past records—you’ll spend
           less time managing data and more time focusing on your health.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-6 mb-2">
+        {/* <h2 className="text-2xl font-semibold mt-6 mb-2">
           Your Health, Your Control
         </h2>
         <p className="text-lg leading-relaxed mb-10">
@@ -50,11 +51,11 @@ export default function Home() {
           medication history up to date, you’ll have a clear picture of your
           health over time. Start tracking today and take control of your
           well-being, one entry at a time.
-        </p>
+        </p> */}
       </div>
 
       {/* Buttons Section */}
-      <div className="grid grid-cols-2 gap-6 mt-6">
+      <div className="grid grid-cols-1 mt-6">
         {/* Column 1: Symptoms */}
         <div className="flex flex-col gap-4">
           <Link
@@ -78,7 +79,7 @@ export default function Home() {
         </div>
 
         {/* Column 2: Medicines */}
-        <div className="flex flex-col gap-4">
+        {/* <div className="flex flex-col gap-4">
           <Link
             href="/medicines"
             className="bg-green-500 text-white py-2 px-6 rounded-lg text-center font-semibold hover:bg-green-600 transition"
@@ -97,7 +98,7 @@ export default function Home() {
           >
             Medicine History
           </Link>
-        </div>
+        </div> */}
       </div>
 
       {/* Footer Disclaimer */}
