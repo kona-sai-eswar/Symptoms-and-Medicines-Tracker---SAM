@@ -38,14 +38,14 @@ export default function ModalRestore({
           <div className="flex justify-center items-center gap-3 p-4 rounded">
             <button
             onClick={() => {handleRestorefromHistory(true)}}
-            className="border bg-red-500 text-white cursor-pointer rounded p-1 w-[70px] transform transition delay-300 hover:scale-125"
+            className="border bg-green-500 text-white cursor-pointer rounded p-1 w-[70px] transform transition delay-300 hover:scale-125"
           >
             Yes
           </button>
           
             <button
               onClick={() => {handleRestorefromHistory(false)}}
-              className="border bg-green-500 text-white cursor-pointer rounded p-1 w-[70px] transform transition delay-300 hover:scale-125"
+              className="border bg-red-500 text-white cursor-pointer rounded p-1 w-[70px] transform transition delay-300 hover:scale-125"
             >
               No
             </button>

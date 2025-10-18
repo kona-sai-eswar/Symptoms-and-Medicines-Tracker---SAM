@@ -136,63 +136,6 @@ export default function SymptomDisplay({date,id, symptom,setRefetchData, setSymp
 
     return(
         <>
-            {/* {date?.records?.length>0 && <div>
-                <div>{date?.date}</div>
-                <button onClick={handleDateDelete}>Delete</button>
-                </div>} */}
-                
-                        {/* <div key={record._id} className="flex flex-col border border-cyan-400 rounded p-2 min-w-[150px] max-h-[200px] min-h-[250px]">
-                            <div>At {record?.time}</div>
-                            <div>
-                            severity {
-                                editSev? <>
-                                    <label>
-                                        <select value={newSev} onChange={(e)=>{setNewSev(e.target.value); setNewErr(p=>({...p, sev:""}))}}>
-                                        <option value="">Select</option>
-                                        {
-                                            Array.from({length:5},(_,i)=>i+1).map(sev=><option key={sev}>{sev}</option>)
-                                        }
-                                        </select>
-                                    </label>
-                                    {newErr.sev.length>0 && <>
-                                        <p>{newErr.sev}</p>
-                                    </>}
-                                    <button onClick={()=>handleSev(record?._id, record?.severity)} disabled={newErr.sev!==""} className="border border-red-500 bg-red-500 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Done</button>
-                                    <button onClick={()=>{setNewErr(p=>({...p, sev:""})); setNewSev(record.severity); setEditSev(false)}} className="border border-red-500 bg-red-500 cursor-pointer">Close</button>
-                                </>
-                                :<>
-                                <span>{record?.severity}</span>
-                                <button onClick={()=>setEditSev(p=>!p)} className="border border-red-500 bg-red-500 cursor-pointer">Update</button>
-                                </>
-                            }
-
-                            </div>
-
-                            <div>
-                            {
-                                editDes?<>
-                                    <textarea value={newDes} onChange={(e)=>{setNewDes(e.target.value); setNewErr(p=>({...p, des:""}))}}/>
-                                    {newErr.des.length>0 && <>
-                                    <p>{newErr.des}</p>
-                                    </>
-                                    }
-                                    <button onClick={()=>handleDes(record?._id, record?.description)} disabled={newErr.des!==""} className="border border-red-500 bg-red-500 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Done</button>
-                                    <button onClick={()=>{setNewErr(p=>({...p, des:""})); setNewDes(record.description); setEditDes(false)}} className="border border-red-500 bg-red-500 cursor-pointer">Close</button>
-                                </>:<>
-                                    <div className="flex gap-3">
-                                        {record?.description}
-                                        <button onClick={()=>setEditDes(p=>!p)} className="border border-red-500 bg-red-500 cursor-pointer">Update</button>
-                                    </div>
-                                </>
-                            }
-                            </div>
-                            
-                            <button 
-                                className="border border-red-500 bg-red-500 cursor-pointer"
-                                onClick={()=>handleRecordDelete(record._id)}
-                            >Delete</button>
-                        </div> */}
-
 <div
   key={record._id}
   className="flex flex-col justify-between p-4 bg-gradient-to-br from-cyan-400 to-blue-500 text-white rounded-xl shadow-md min-w-[220px] max-w-[220px] min-h-[200px] max-h-[300px] snap-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl overflow-auto scrollbar-hide">

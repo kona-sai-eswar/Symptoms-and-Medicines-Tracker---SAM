@@ -24,12 +24,12 @@ export default function NavBar() {
     <header className="fixed top-0 left-0 w-full h-[60px] bg-blue-500 text-white shadow-md z-50">
       <div className="relative max-w-7xl mx-auto h-full flex items-center px-6">
         {/* Logo / Title */}
-        <Link
+        {/* <Link
           href="/"
           className="text-xl font-semibold tracking-wide hover:text-blue-100 transition"
         >
           SAM
-        </Link>
+        </Link> */}
 
         {/* Centered Nav */}
         <nav
@@ -102,7 +102,7 @@ export default function NavBar() {
           </div>
 
           {/* Future Medicines Link */}
-          <Link
+          {/* <Link
             href="/medicines"
             className={`px-3 py-1.5 rounded-md transition-colors ${
               path.startsWith("/medicines")
@@ -111,7 +111,7 @@ export default function NavBar() {
             }`}
           >
             Medicines
-          </Link>
+          </Link> */}
         </nav>
       </div>
     </header>
