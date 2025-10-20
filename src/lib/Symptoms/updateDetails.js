@@ -2,9 +2,12 @@
 
 import SymptomsModel from "@/models/Symptoms";
 import { revalidatePath } from "next/cache";
+import dbConnection from "../dbConnect";
 
 export async function updateSeverity(symptomId, dateId, recordId, newSeverity) {
   try {
+        await dbConnection()
+
     // Update nested record severity
     const result = await SymptomsModel.updateOne(
       { _id: symptomId, "severity._id": dateId, "severity.records._id": recordId },
@@ -34,6 +37,8 @@ export async function updateSeverity(symptomId, dateId, recordId, newSeverity) {
 
 export async function updateDescription(symptomId, dateId, recordId, newDes) {
   try {
+        await dbConnection()
+
     // Update nested record description
     const result = await SymptomsModel.updateOne(
       { _id: symptomId, "severity._id": dateId, "severity.records._id": recordId },
@@ -63,6 +68,8 @@ export async function updateDescription(symptomId, dateId, recordId, newDes) {
 
 export async function deleteRecord(symptomId, dateId, recordId) {
   try {
+        await dbConnection()
+
     const result = await SymptomsModel.updateOne(
       { _id: symptomId, "severity._id": dateId},
       {
@@ -83,6 +90,8 @@ export async function deleteRecord(symptomId, dateId, recordId) {
 
 export async function deleteDate(symptomId, dateId) {
   try {
+        await dbConnection()
+
     const result = await SymptomsModel.updateOne(
       { _id: symptomId},
       {

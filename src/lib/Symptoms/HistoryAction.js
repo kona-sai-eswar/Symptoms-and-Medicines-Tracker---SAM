@@ -1,9 +1,12 @@
 "use server"
 import SymptomsModel from "@/models/Symptoms";
 import { revalidatePath } from "next/cache";
+import dbConnection from "../dbConnect";
 
 export async function MoveToHistory(id){
     try{
+            await dbConnection()
+
         let res=await SymptomsModel.updateOne({_id:id},{$set:{isArchived:true, isSaved:false}})
         revalidatePath("/symptoms")
         revalidatePath("/symptoms/saved")
@@ -17,6 +20,8 @@ export async function MoveToHistory(id){
 
 export async function RestorefromHistory(id,moveToSaved){
     try{
+            await dbConnection()
+
         let res=await SymptomsModel.updateOne({_id:id},{$set:{isArchived:false, isSaved:moveToSaved}})
         revalidatePath("/symptoms")
         revalidatePath("/symptoms/saved")
