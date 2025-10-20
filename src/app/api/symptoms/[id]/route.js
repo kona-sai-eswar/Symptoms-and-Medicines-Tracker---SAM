@@ -1,8 +1,9 @@
 import dbConnection from "@/lib/dbConnect";
 import SymptomsModel from "@/models/Symptoms";
 import { NextResponse } from "next/server";
-dbConnection()
 export async function GET(req,{params}){
+    dbConnection()
+    
     const p = await params;
     try{
         const id =  p.id
@@ -14,6 +15,8 @@ export async function GET(req,{params}){
 }
 
 export async function PUT(req, {params}){
+    dbConnection()
+    
     const p = await params;
     try{
         const id= p.id
@@ -26,6 +29,8 @@ export async function PUT(req, {params}){
 }
 
 export async function DELETE(req,{params}){
+    dbConnection()
+    
     const p = await params;
     try{
         let id = await p.id
