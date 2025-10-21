@@ -4,7 +4,7 @@ import SymptomsCard from "@/components/Symptoms/SymptomsCard"
 import {useState, useMemo} from "react"
 import useDebounce from "@/hooks/useDebounce"
 
-export default function SymptomsClient({symptoms, fromArchived=false, fromSaved=true}){
+export default function SymptomsClient({symptoms, fromArchived=false, fromSaved=false}){
  
     const [search, setSearch] = useState("")
     const {debounce} = useDebounce(search)
